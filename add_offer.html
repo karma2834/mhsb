@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Teklif Ekle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8; /* Daha açık bir arka plan rengi */
+            margin: 0;
+            display: flex; /* Flexbox ile yerleşim */
+        }
+
+        /* Sol Menü için stil ayarları */
+        .sidebar {
+            width: 250px;
+            height: 100vh; /* Tam yüksekliği kaplasın */
+            background-color: #343a40; /* Koyu arka plan */
+            padding-top: 20px; /* Üstten boşluk */
+            position: fixed; /* Sabit menü */
+            color: #cfd8dc; /* Menü metin rengi */
+        }
+
+        .sidebar h3 {
+            color: white; /* Başlık rengi beyaz */
+            text-align: center; /* Ortala */
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            color: #cfd8dc; /* Açık gri renk */
+            text-decoration: none; /* Altı çizgi yok */
+            border-radius: 5px; /* Kenar yuvarlama */
+        }
+
+        .sidebar a:hover {
+            background-color: #495057; /* Üzerine gelinince arka plan rengi değişir */
+            color: white; /* Üzerine gelince yazı beyaz */
+        }
+
+        .content {
+            margin-left: 260px; /* Menü genişliği */
+            padding: 30px; /* İçerik alanı için yer */
+            flex-grow: 1; /* İçerik alanı büyümeye izin ver */
+            background-color: #ffffff; /* Beyaz içerik arka plan rengi */
+            border-radius: 8px; /* Kenar yuvarlama */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Alt boşluk */
+            font-size: 24px; /* Başlık boyutu */
+        }
+
+        /* Responsive tasarım */
+        @media (max-width: 768px) {
+            .content {
+                padding: 10px; /* Mobil arayüzlerde iç boşlukları ayarla */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Muhasebe Programı</h3>
+        <a href="{{ url_for('index') }}">Ana Sayfa</a>
+        <a href="{{ url_for('sales_screen') }}">Satış Ekranı</a>
+        <a href="{{ url_for('offers') }}">Teklifler</a>
+        <a href="{{ url_for('my_orders') }}">Siparişlerim</a>
+        <a href="{{ url_for('add_product') }}">Ürün Ekle</a>
+        <a href="{{ url_for('report') }}">Rapor</a>
+        <a href="{{ url_for('logout') }}">Çıkış Yap</a>
+    </div>
+
+    <div class="content">
+        <h1>Yeni Teklif Ekle</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="product_service">Ürün/Hizmet:</label>
+                <input type="text" name="product_service" class="form-control" placeholder="Ürün veya hizmet adını girin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer_name">Müşteri Adı:</label>
+                <input type="text" name="customer_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="offer_name">Teklif Adı:</label>
+                <input type="text" name="offer_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="due_date">Vade:</label>
+                <select name="due_date" class="form-control" required>
+                    <option value="7 Gün">7 Gün</option>
+                    <option value="14 Gün">14 Gün</option>
+                    <option value="30 Gün">30 Gün</option>
+                    <option value="60 Gün">60 Gün</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="currency">Döviz:</label>
+                <input type="text" name="currency" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Miktar:</label>
+                <input type="number" name="quantity" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="unit_price">Birim Fiyatı:</label>
+                <input type="number" name="unit_price" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tax_rate">Vergi Oranı (%):</label>
+                <input type="number" name="tax_rate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="discount">İndirim (%):</label>
+                <input type="number" name="discount" class="form-control" value="0">
+            </div>
+
+            <button type="submit" class="btn btn-success">Teklif Ekle</button> <!-- Buton rengi yeşil olarak güncellendi -->
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
